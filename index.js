@@ -2,15 +2,15 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const Employee = require("./lib/Employee");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
-const Manager = require("./lib/Manager");
+// const Employee = require("./lib/Employee");
+// const Engineer = require("./lib/Engineer");
+// const Intern = require("./lib/Intern");
+// const Manager = require("./lib/Manager");
 const team = [];
 
 //initial employee questions
 const questions = () => {
-    inquirer.prompt([
+    inquirer.prompt(inquirer.prompt([
     {
         //name
     type: "input",
@@ -33,15 +33,14 @@ const questions = () => {
         //role/position
     type: "input",
     name: "role",
-    message: "What is employee position/role?", 
+    message: "What is employee role/position?", 
     choices: [Manager, Engineer, Intern],  
     }
-    ]); 
-}
+    ])); }
 
 function promptQuestions() {
     inquirer.prompt(questions)
-    .then((answers) => {
+    .then(answers => {
         if (answers.role === Manager) {
             // officeNumber
             const officeNumber = inquirer.prompt ([ 
@@ -55,7 +54,7 @@ function promptQuestions() {
             team.push(
                 new Manager(answers.name, answers.id, answers.email, officeNumber.officeNumber)
                 );
-            } else if (answers.role === Engineer) {
+            } else if (answer.role === Engineer) {
         //Engineer additional questions
         // github // GitHub username
             const github= inquirer.prompt ([ 
@@ -81,10 +80,10 @@ function promptQuestions() {
             team.push(new Intern(answers.name, answers.id, answers.email, school.school));
         };
     })
-    buildTeam()
+    // buildTeam()
 };
 
-promptQuestions();
+ promptQuestions();
 
 //create a function to build team in the HTML file
 function buildTeam() {
@@ -111,3 +110,28 @@ function init() {
 
 //function call to initialize app
 init();
+
+
+
+// inquirer.prompt([
+//     {
+//       type: "input",
+//       name: "test",
+//       message: "Input a message here: "
+//     }
+// ]).then(ans => {
+//     console.log(ans)
+// })
+
+// Once you have something like that and you know it works. Then you can extrapolate the question and pass it as a variable. Like this
+// const questions = [
+//     {
+//       type: "input",
+//       name: "test",
+//       message: "Input a message here: "
+//     }
+// ]
+
+// inquirer.prompt(questions).then(ans => {
+//     console.log(ans)
+// })
