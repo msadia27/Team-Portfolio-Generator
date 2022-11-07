@@ -1,4 +1,4 @@
-const Intern = require("./lib/Intern");
+const Intern = require("../lib/Intern");
 
 test('school', () => {
     const school = "SCHOOL";

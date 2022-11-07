@@ -10,7 +10,7 @@ const team = [];
 
 //initial employee questions
 const questions = () => {
-    inquirer.prompt(inquirer.prompt([
+    return inquirer.prompt([
     {
         //name
     type: "input",
@@ -34,16 +34,24 @@ const questions = () => {
     type: "input",
     name: "role",
     message: "What is employee role/position?", 
-    choices: [Manager, Engineer, Intern],  
+    choices: ['Manager', 'Engineer', 'Intern'],  
     }
-    ])); }
+    ]); }
 
-function promptQuestions() {
-    inquirer.prompt(questions)
-    .then(answers => {
+const promptQuestions = () => {
+    //questions().then(answers => console.log('answers', answers))
+    //console.log('answers', answers)
+    //inquirer.prompt
+    
+    questions().
+    then(answers => {
+        console.log('answers', answers)
+        
+        
         if (answers.role === Manager) {
             // officeNumber
-            const officeNumber = inquirer.prompt ([ 
+            //const 
+            return officeNumber = inquirer.prompt ([ 
             {
             type: "input",
             name: "officeNumber",
@@ -54,7 +62,8 @@ function promptQuestions() {
             team.push(
                 new Manager(answers.name, answers.id, answers.email, officeNumber.officeNumber)
                 );
-            } else if (answer.role === Engineer) {
+
+        } else if (answer.role === Engineer) {
         //Engineer additional questions
         // github // GitHub username
             const github= inquirer.prompt ([ 
@@ -79,11 +88,14 @@ function promptQuestions() {
             const addIntern = new Intern(answers.name, answers.id, answers.email, school.school);
             team.push(new Intern(answers.name, answers.id, answers.email, school.school));
         };
+        buildTeam() 
     })
-    // buildTeam()
+    
+
 };
 
  promptQuestions();
+
 
 //create a function to build team in the HTML file
 function buildTeam() {
@@ -109,7 +121,7 @@ function init() {
 };
 
 //function call to initialize app
-init();
+//init();
 
 
 

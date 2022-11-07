@@ -1,21 +1,21 @@
-const Manager = require("./lib/Manager");
+const Manager = require("../lib/Manager");
 
 test('what is your office number', () => {
-    const test = "office number";
-    const Manager = new Manager();
-    expect(manager.officeNumber).toBe('test');
+    const officeNumber = "01";
+    const manager = new Manager('Jared', 123, 'test@gmail.com', officeNumber);
+    expect(manager.officeNumber).toBe(officeNumber);
   });
   
-  test('does office number work', () => {
-    const test = "office number";
-    const intern = new Intern("github name", id, email, officeNumber);
-    expect(manager.getSchool()).toBe('test');
+  test('does office number method work', () => {
+    const officeNumber = "01";
+    const manager = new Manager('Jared', 123, 'test@gmail.com', officeNumber);
+    expect(manager.getOfficeNumber()).toBe(officeNumber);
   });
   
-  test('role', () => {
-      const test = Manager;
-      const intern = new Intern("github name", id, email, officeNumber);
-      expect(manager.getRole()).toBe('test');
+  test('testing role', () => {
+      const role = 'Manager';
+      const manager = new Manager('Jared', 123, 'test@gmail.com', '01');
+      expect(manager.getRole()).toBe(role);
     });
   
   //github // GitHub username
