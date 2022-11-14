@@ -1,7 +1,7 @@
 //generate index.html and html for each position/role
 
-function generateTeam (team) {
-    return `
+function generateTeam(team) {
+  return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -19,17 +19,20 @@ function generateTeam (team) {
     </div>
 
     <div class = "employee col-12 col-md-4">
-        ${team.map(teamMember => {
-            let specialAttribute
-            if(teamMember.getRold() === "Engineer") specialAttribute = teamMember.getGithub();
-            if(teamMember.getRold() === "Intern") specialAttribute = teamMember.getSchool();
-            if(teamMember.getRold() === "Manager") specialAttribute = teamMember.getOffice();
-            return `
+        ${team.map((teamMember) => {
+          let specialAttribute;
+          if (teamMember.getRole() === "Engineer")
+            specialAttribute = teamMember.getGithub();
+          if (teamMember.getRole() === "Intern")
+            specialAttribute = teamMember.getSchool();
+          if (teamMember.getRole() === "Manager")
+            specialAttribute = teamMember.getOffice();
+          return `
             <div class ="">
                 <div>
                 </div>
             </div>
-            `
+            `;
         })}
         <div>
             <h2 class ="font-style">Jared</h2>
@@ -43,7 +46,7 @@ function generateTeam (team) {
     </div>
 </body>
 </html>
-`
+`;
 }
 
 module.exports = generateTeam;
