@@ -28,10 +28,10 @@ async function getAsk() {
       message: "What is employee email?",
     },
     {
-      type: "input",
       name: "role",
-      message: "What is employee role/position?",
+      type: "list",
       choices: ["Manager", "Engineer", "Intern"],
+      message: "What is employee role/position?",
     },
   ]);
   if (answers.role === "Manager") {
@@ -66,7 +66,7 @@ async function getAsk() {
       answers.id,
       answers.email,
       answers.role,
-      gitHub.gitHub
+      gitHub.github
     );
     team.push(newEngineer);
   } else if (answers.role === "Intern") {
@@ -104,23 +104,21 @@ const promptQuestions = async () => {
   if (addTeam.addTeam === "Add team") {
     promptQuestions();
   } else {
-    console.log(team);
-    // return buildTeam(team);
+    return buildTeam(team);
   }
 };
 
 //create a function to build team in the HTML file
-// function buildTeam(team) {
-// console.log(team);
-// fs.writeFile("./dist/index.html", buildHTML(team), (err) => {
-//   console.log(team);
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log("HTML file made for the team");
-//   }
-// });
-// }
+function buildTeam(team) {
+  fs.writeFile("./dist/index.html", buildHTML(team), (err) => {
+    console.log(team);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("HTML file made for the team");
+    }
+  });
+}
 
 // async function promptQuestions() {
 //   await questions();

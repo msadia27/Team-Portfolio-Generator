@@ -14,26 +14,36 @@ function buildHtml(team) {
     </head>
     <body>
     
-    <div class="jumbotron col-12">
-        <h1 class ="font-style">MY TEAM</h1>
-    </div>
+      <h1 class ="font-style text-center">MY TEAM</h1>
 
-    <div class = "employee col-12 col-md-4">
+    
+    <div class = "employee row justify-content-center">
         ${team.map((teamMember) => {
           let specialAttribute;
           if (teamMember.getRole() === "Manager")
-            specialAttribute = teamMember.getOffice();
+            specialAttribute = teamMember.getOfficeNumber();
           if (teamMember.getRole() === "Engineer")
-            specialAttribute = teamMember.getGithub();
+            specialAttribute = teamMember.getGitHub();
           if (teamMember.getRole() === "Intern")
             specialAttribute = teamMember.getSchool();
-            return`
-            <div class="card h-100 m-3 w-100">
-            <div class = "card-body text-bg-info text-center">
-              <p class = "card-title">${teamMember}
-              </p> 
+          return `
+            <div class="card col-12 col-md-3 m-auto">  
+              <div class="card-header bg-primary">
+                <h5>${teamMember.name}</h5>
+                <p>${teamMember.getRole()}</p>
+              </div>
+
+              <div class="card-body text-bg-info text-center py-2">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">${teamMember.id}</li>
+                  <li class="list-group-item">${teamMember.email}</li>
+                  <li class="list-group-item">${
+                    teamMember.specialAttribute
+                  }</li>
+                </ul>
+              </div>
             </div>
-            `
+            `;
         })}
 </body>
 </html>
