@@ -10,8 +10,7 @@ const Manager = require("./lib/Manager");
 
 const team = [];
 
-//initial employee questions
-const questions = async () => {
+async function getAsk() {
   const answers = await inquirer.prompt([
     {
       type: "input",
@@ -51,6 +50,7 @@ const questions = async () => {
       officeNumber.officeNumber
     );
     team.push(newManager);
+    // console.log(team);
   } else if (answers.role === "Engineer") {
     //Engineer additional questions
     // github // GitHub username
@@ -88,24 +88,11 @@ const questions = async () => {
     );
     team.push(newIntern);
   }
-};
-
-//create a function to build team in the HTML file
-function buildTeam(team) {
-  {
-    fs.writeFile("./dist/index.html", buildHTML(team), (err) => {
-      console.log(team);
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("HTML file made for the team");
-      }
-    });
-  }
 }
 
-async function promptQuestions() {
-  await questions();
+//initial employee questions
+const promptQuestions = async () => {
+  await getAsk();
   const addTeam = await inquirer.prompt([
     {
       name: "addTeam",
@@ -115,11 +102,43 @@ async function promptQuestions() {
     },
   ]);
   if (addTeam.addTeam === "Add team") {
-    return promptQuestions();
+    promptQuestions();
   } else {
-    return buildTeam();
+    console.log(team);
+    // return buildTeam(team);
   }
-}
+};
+
+//create a function to build team in the HTML file
+// function buildTeam(team) {
+// console.log(team);
+// fs.writeFile("./dist/index.html", buildHTML(team), (err) => {
+//   console.log(team);
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log("HTML file made for the team");
+//   }
+// });
+// }
+
+// async function promptQuestions() {
+//   await questions();
+//   // console.log(team);
+//   const addTeam = await inquirer.prompt([
+//     {
+//       name: "addTeam",
+//       type: "list",
+//       choices: ["Add team", "Show team"],
+//       message: "What would you like to do?",
+//     },
+//   ]);
+//   if (addTeam.addTeam === "Add team") {
+//     return promptQuestions();
+//   } else {
+//     return buildTeam(team);
+//   }
+// }
 
 promptQuestions();
 
