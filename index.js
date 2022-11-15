@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 // const path = require("./src/template.js");
+const buildHTML = require("./src/template");
 const fs = require("fs");
 
 const Employee = require("./lib/Employee");
@@ -49,15 +50,7 @@ const questions = async () => {
       answers.role,
       officeNumber.officeNumber
     );
-    team.push(
-      newManager(
-        answers.name,
-        answers.id,
-        answers.email,
-        answers.role,
-        officeNumber.officeNumber
-      )
-    );
+    team.push(newManager);
   } else if (answers.role === "Engineer") {
     //Engineer additional questions
     // github // GitHub username
@@ -75,15 +68,7 @@ const questions = async () => {
       answers.role,
       gitHub.gitHub
     );
-    team.push(
-      newEngineer(
-        answers.name,
-        answers.id,
-        answers.email,
-        answers.role,
-        gitHub.gitHub
-      )
-    );
+    team.push(newEngineer);
   } else if (answers.role === "Intern") {
     //intern additional questions
     // school
@@ -101,22 +86,14 @@ const questions = async () => {
       answers.role,
       school.school
     );
-    team.push(
-      newIntern(
-        answers.name,
-        answers.id,
-        answers.email,
-        answers.role,
-        school.school
-      )
-    );
+    team.push(newIntern);
   }
 };
 
 //create a function to build team in the HTML file
 function buildTeam(team) {
   {
-    fs.writeFile("./dist/index.html", `${team}`, (err) => {
+    fs.writeFile("./dist/index.html", buildHTML(team), (err) => {
       console.log(team);
       if (err) {
         console.log(err);

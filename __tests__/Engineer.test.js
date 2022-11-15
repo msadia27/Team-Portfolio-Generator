@@ -9,12 +9,12 @@ test("github", () => {
 test("github return", () => {
   const GitHub = "github name";
   const engineer = new Engineer("Jared", 123, "test@gmail.com", GitHub);
-  expect(engineer.getGithub()).toBe(GitHub);
+  expect(engineer.getGitHub()).toBe(GitHub);
 });
 
 test("role", () => {
   const role = "Engineer";
-  const engineer = new Engineer("Jared", 123, "test@gmail.com", GitHub);
+  const engineer = new Engineer("Jared", 123, "test@gmail.com", "github name");
   expect(engineer.getRole()).toBe(role);
 });
 

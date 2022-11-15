@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/msadia27/Team-Portfolio-Generator#readme",
   "dependencies": {
+    "bootstrap": "^5.2.2",
     "jest": "^29.2.2"
   }
 }
